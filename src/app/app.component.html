@@ -1,0 +1,30 @@
+<courses>courses</courses>
+<h2>**ifElse**</h2>
+<div *ngIf="courses.length >0; then coursesList else noCourses">   
+</div>
+<ng-template #coursesList>
+    <h3>List of Courses.</h3>
+</ng-template>
+<ng-template #noCourses>
+   <h3> No Courses List.</h3>
+</ng-template>
+
+<h2>**SwitchCase**</h2>
+<ul class="nav nav-pills">
+<li [class.active]="viewMode== 'map'"><a (click)="viewMode ='map'" >Map View</a></li>
+<li [class.active]="viewMode == 'list'"><a (click)="viewMode ='list'">List View</a></li>
+</ul>
+
+<div [ngSwitch]= "viewMode">
+<div *ngSwitchCase="'map'">Map View content.</div>
+<div *ngSwitchCase="'list'">List View content.</div>
+<div *ngSwitchDefault>OtherWise.</div>
+</div>
+ 
+ <button (click)="onAdd()">Add</button>
+<ul>
+    <li *ngFor="let course of courses; even as iEvan">
+        {{course.id}}- {{course.name}} <span *ngIf="iEvan">(EVEN)</span>
+        <button (click)="onRemove(course)">Remove</button>
+    </li>
+</ul>
